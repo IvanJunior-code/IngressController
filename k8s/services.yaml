@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-web-site-default
+spec:
+  selector:
+    app: web-site-default
+  ports:
+    - port: 80
+      targetPort: 5000
+  type: ClusterIP
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-web-site1
+spec:
+  selector:
+    app: web-site1
+  ports:
+    - port: 80
+      targetPort: 5000
+  type: ClusterIP
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-web-site2
+spec:
+  selector:
+    app: web-site2
+  ports:
+    - port: 80
+      targetPort: 5000
+  type: ClusterIP
+---

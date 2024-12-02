@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-simple
+spec:
+  ingressClassName: nginx #kubectl get ingressclass
+  # Regra simples, sempre direcionando para o mesmo service
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web-site1
+                port:
+                  number: 80

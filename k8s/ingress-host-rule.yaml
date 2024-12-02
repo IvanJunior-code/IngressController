@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-host
+spec:
+  ingressClassName: nginx
+  # Regras baseadas em host
+  rules:
+    - host: site1.SITE.com
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: web-site1
+              port:
+                number: 80
+    - host: site2.SITE.com
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: web-site2
+              port:
+                number: 80
+---

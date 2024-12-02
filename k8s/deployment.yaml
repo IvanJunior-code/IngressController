@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-web-site-default
+spec:
+  selector:
+    matchLabels:
+      app: web-site-default
+  template:
+    metadata:
+      labels:
+        app: web-site-default
+    spec:
+      containers:
+        - name: web-site-default
+          image: ivanjuniordocker/site-default:1.0
+          resources: {}
+          ports:
+            - containerPort: 5000
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-web-site1
+spec:
+  selector:
+    matchLabels:
+      app: web-site1
+  template:
+    metadata:
+      labels:
+        app: web-site1
+    spec:
+      containers:
+        - name: web-site1
+          image: ivanjuniordocker/site1:1.0
+          resources: {}
+          ports:
+            - containerPort: 5000
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-web-site2
+spec:
+  selector:
+    matchLabels:
+      app: web-site2
+  template:
+    metadata:
+      labels:
+        app: web-site2
+    spec:
+      containers:
+        - name: web-site2
+          image: ivanjuniordocker/site2:1.0
+          resources: {}
+          ports:
+            - containerPort: 5000
