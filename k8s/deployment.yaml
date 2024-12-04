@@ -13,10 +13,10 @@ spec:
     spec:
       containers:
         - name: web-site-default
-          image: ivanjuniordocker/site-default:1.0
+          image: nginx:1.27.3
           resources: {}
           ports:
-            - containerPort: 5000
+            - containerPort: 80
 ---
 
 apiVersion: apps/v1
@@ -34,10 +34,10 @@ spec:
     spec:
       containers:
         - name: web-site1
-          image: ivanjuniordocker/site1:1.0
+          image: httpd:2.4.62
           resources: {}
           ports:
-            - containerPort: 5000
+            - containerPort: 80
 ---
 
 apiVersion: apps/v1
@@ -55,7 +55,7 @@ spec:
     spec:
       containers:
         - name: web-site2
-          image: ivanjuniordocker/site2:1.0
+          image: tomcat:9.0.97-jre11
           resources: {}
           ports:
-            - containerPort: 5000
+            - containerPort: 8080
