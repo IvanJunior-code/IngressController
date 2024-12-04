@@ -6,7 +6,7 @@ spec:
   ingressClassName: nginx
   defaultBackend:
     service:
-      name: web-site-default
+      name: service-web-site-default
       port:
         number: 80
 ---
