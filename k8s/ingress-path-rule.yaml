@@ -11,17 +11,16 @@ spec:
     - http:
         paths:
           - path: /site1
-            pathType:
+            pathType: Prefix
             backend:
               service:
-                name: web-site1
+                name: service-web-site1
                 port:
                   number: 80
           - path: /site2
-            pathType:
+            pathType: Prefix
             backend:
               service:
-                name: web-site2
+                name: service-web-site2
                 port:
                   number: 80
----
