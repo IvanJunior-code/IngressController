@@ -59,20 +59,38 @@ kubectl apply -f ingress-path-rule.yaml -f ingress-host-rule.yaml -f ingress-def
 **Nota**: A regra `ingress-simple-rule.yaml` não será aplicada neste exemplo, pois direciona para apenas um único Service.
 
 5. Configurar o DNS:
-<br>
-    5.1. Identifique o namespace do Nginx Ingress Controller:
+
+    5.1. Identificar Host ou IP do Load Balancer:
+    
+    5.1.1. Identificar o namespace do Nginx Ingress Controller:
     ```
     kubectl get namespace
     ```
-    5.2. Obtenha o endereço do Load Balancer:
+    5.1.2. Obter o endereço host do Load Balancer:
     ```
     kubectl get svc -n ingress-nginx
     ```
-    5.3. Utilize o comando dig para obter o IP do Load Balancer:
+    **Nota**: O host será identificado como EXTERNAL-IP, Ingress do tipo LoadBalancer.
+
+    5.1.3. Utilizar o comando dig para obter o IP do Load Balancer:
     ```
     dig host.elb.us-east-1.amazonaws.com +short
     ```
-    5.4. Configure no painel DNS seguindo tipo, subdomínio e IP:
+    **Nota**: Dependendo da quantidade de Zonas de Disponibilidade, o host do Load Balancer pode retornar mais de um IP. Basta selecionar um.
+    
+    
+
+    5.2. Configurar o DNS:
+    
+    **Nota**: Utilize apenas uma das configurações, por Host ou por IP, seguindo **tipo**, **subdomínio**, e **host** ou **IP**.
+    
+    5.2.1. Configurar no painel DNS por Host:
+    ```dns
+    CNAME www host.elb.us-east-1.amazonaws.com
+    CNAME site1 host.elb.us-east-1.amazonaws.com
+    CNAME site2 host.elb.us-east-1.amazonaws.com
+    ```
+    5.1.4. Configurar no painel DNS por IP:
     ```dns
     A @ 54.87.51.157
     A site1 54.87.51.157
@@ -81,4 +99,4 @@ kubectl apply -f ingress-path-rule.yaml -f ingress-host-rule.yaml -f ingress-def
 <br>
 
 ## Conclusão
-Este projeto fornece um ambiente de teste para configurar e entender como o Ingress Controller funciona no Kubernetes e direciona o tráfego, permitindo a criação de regras flexíveis para gerenciar as requisições.
+Este projeto fornece um ambiente de teste para configurar e entender como o Ingress Controller funciona no Kubernetes direcionando o tráfego, permitindo a criação de regras flexíveis para gerenciar as requisições.
